@@ -4,15 +4,11 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd mammoth-test-helpers`
-* `npm install`
-* `bower install`
+* `ember install mammoth-test-hellpers`
 
-## Running
+## Use
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+
 
 ## Running Tests
 
