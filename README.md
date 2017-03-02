@@ -1,13 +1,12 @@
 # mammoth-test-helpers
 
-This README outlines the details of collaborating on this Ember addon.
+A set of QUnit extensions, stubs for common global tools, and other testing tools for testing Ember CLI applications.
 
 ## Installation
 
-* `ember install mammoth-test-hellpers`
+* `ember install mammoth-test-helpers`
 
 ## Use
-
 
 The primary way to use this is to add some code to your `tests/test-helper.js`.  You include the primary `prepTests` helper, and can programatically add additional helpers to load.
 
@@ -48,10 +47,10 @@ Several modules are includes:
 |`mammoth-test-helpers/test-support/helpers/link-to-helper`|   | Adds data attributes to `link-to` helpers that track the passed in models / path. |[source](addon-test-support/helpers/link-to-helper.js)|
 |`mammoth-test-helpers/test-support/shims/console`|   | Shim for `window.console.log` if it doesn't exist (thanks IE!). |[source](addon-test-support/shims/console.js)|
 |`mammoth-test-helpers/test-support/stubs/google-chart`|   | Stub out common methods related to google charts. |[source](addon-test-support/stubs/google-chart.js)|
-|`mammoth-test-helpers/test-support/stubs/rsvp`|   | Returns `stubRSVP` and `unstubRSVP` for situations where you don't want RSVP to throw an error (e.g. if you are testing failed requests). |[source](addon-test-support/stubs/rsvp.js)|
 |`mammoth-test-helpers/test-support/stubs/stripe`|   | Stub out some common behavior for Stripe. |[source](addon-test-support/stubs/stripe.js)|
-|`mammoth-test-helpers/test-support/stubs/window-actions`|   | Includes several methods for stubbing / unstubbing common blocking window actions (e.g. `alert` and `confirm`.)  Stubs accept functions for testing parameters. |[source](addon-test-support/stubs/window-actions.js)|
 |`mammoth-test-helpers/test-support/stubs/wysihtml5`|   | Stub out globals for WysiHTML5. |[source](addon-test-support/stubs/wysihtml5.js)|
+|`mammoth-test-helpers/test-support/temporary-stubs/rsvp`|   | Returns `stubRSVP` and `unstubRSVP` for situations where you don't want RSVP to throw an error (e.g. if you are testing failed requests). |[source](addon-test-support/stubs/rsvp.js)|
+|`mammoth-test-helpers/test-support/temporary-stubs/window-actions`|   | Includes several methods for stubbing / unstubbing common blocking window actions (e.g. `alert` and `confirm`.)  Stubs accept functions for testing parameters. |[source](addon-test-support/stubs/window-actions.js)|
 
 
 ## Running Tests
