@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/MammothHR/mammoth-test-helpers.svg?token=xGaPGowvPdvqS2QgbViy&branch=master)](https://travis-ci.com/MammothHR/mammoth-test-helpers)
+[![Build Status](https://travis-ci.org/MammothHR/mammoth-test-helpers.svg?branch=master)](https://travis-ci.org/MammothHR/mammoth-test-helpers)
 
 # mammoth-test-helpers
 
