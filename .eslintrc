@@ -9,39 +9,6 @@
   },
   "extends": "eslint:recommended",
   "globals": {
-    "computed": false,
-    "getProperties": false,
-    "isEmpty": false,
-    "isBlank": false,
-    "isPresent": false,
-    "require": false,
-    "import": false,
-
-    "setBreakpoint",
-    "currentModel",
-    "getWoof",
-    "getSession",
-    "getController",
-    "getService",
-    "currentController",
-    "numExists",
-    "exists",
-    "notExists",
-    "isVisible",
-    "isHidden",
-    "isFocused",
-    "includes",
-    "notIncludes",
-    "focusOut",
-    "change",
-    "mouseUp",
-    "mouseDown",
-    "mouseOut",
-    "mouseOver",
-    "setSession",
-    "session",
-    "getRoute",
-    "wait"
   },
   "rules": {
     "strict": 0,
@@ -80,13 +47,12 @@
 
     "quotes": [1, "single", "avoid-escape"],
 
-    "consistent-return": 0,
-    "no-extra-parens": 0,
-    "newline-after-var": 0,
-    "no-var": 0,
+    "no-extra-parens": 1,
+    "newline-after-var": 1,
+    "no-var": 1,
+    "curly": 1,
+
     "no-magic-numbers": 0,
-    "prefer-arrow-callback": 0,
-    "curly": 0,
     "valid-jsdoc": 0,
     "no-console": 0
   }

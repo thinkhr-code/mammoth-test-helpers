@@ -1,3 +1,5 @@
+let storedValue;
+
 export default function stubWysihtml5() {
   window.wysihtml5 = {
     lang: {
@@ -21,7 +23,7 @@ export default function stubWysihtml5() {
     Editor() {
       return {
         setValue(value) {
-          this.value = value;
+          storedValue = value;
         },
         on() {
           return {
@@ -29,10 +31,10 @@ export default function stubWysihtml5() {
           };
         },
         getValue() {
-          return this.value;
+          return storedValue;
         },
         destroy() {
-          this.value = null;
+          storedValue = null;
         }
       };
     },

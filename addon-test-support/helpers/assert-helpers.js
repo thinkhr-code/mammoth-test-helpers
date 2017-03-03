@@ -1,19 +1,21 @@
-/* globals Ember */
-
+import Ember from 'ember';
 import QUnit from 'qunit';
 
-var parseActual = function(actual) {
-  if (typeof actual === 'string')
+const { typeOf, isBlank, isPresent } = Ember;
+
+const parseActual = function(actual) {
+  if (typeOf(actual) === 'string') {
     return find(actual);
-  else
+  } else {
     return actual;
+  }
 };
 
 export default function registerHelpers() {
   QUnit.assert.equals = QUnit.assert.equal;
   QUnit.assert.notEquals = QUnit.assert.notEqual;
   QUnit.assert.exists = function(actual, message) {
-    var length = parseActual(actual).length;
+    const length = parseActual(actual).length;
 
     this.pushResult({
       result: length > 0,
@@ -24,7 +26,7 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.numExists = function(actual, count, message) {
-    var length = parseActual(actual).length;
+    const length = parseActual(actual).length;
 
     this.pushResult({
       result: length === count,
@@ -35,7 +37,7 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.notExists = function(actual, message) {
-    var length = parseActual(actual).length;
+    const length = parseActual(actual).length;
 
     this.pushResult({
       result: length === 0,
@@ -46,7 +48,7 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.isVisible = function(actual, message) {
-    var elIsVisible = parseActual(actual).is(':visible');
+    const elIsVisible = parseActual(actual).is(':visible');
 
     this.pushResult({
       result: elIsVisible,
@@ -57,7 +59,7 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.isHidden = function(actual, message) {
-    var el = parseActual(actual);
+    const el = parseActual(actual);
 
     if (Ember.isEmpty(el))
       this.pushResult({
@@ -75,14 +77,33 @@ export default function registerHelpers() {
       });
   };
 
+  // Only works with elements rendered by Ember (e.g. a component)
   QUnit.assert.isFocused = function(actual, message) {
-    var el = parseActual(actual),
-        focused = $(document.activeElement);
-
+    const el = parseActual(actual);
+    const focused = $(document.activeElement);
     // All Ember elements have a unique ID
+    const elId = el.attr('id');
+    const actualId = focused.attr('id');
+
     this.pushResult({
-      result: el.attr('id') === focused.attr('id'),
-      actual,
+      result: elId === actualId,
+      actualId,
+      expected: true,
+      message
+    });
+  };
+
+  // Only works with elements rendered by Ember (e.g. a component)
+  QUnit.assert.isNotFocused = function(actual, message) {
+    const el = parseActual(actual);
+    const focused = $(document.activeElement);
+    // All Ember elements have a unique ID
+    const elId = el.attr('id');
+    const actualId = focused.attr('id');
+
+    this.pushResult({
+      result: elId !== actualId,
+      actualId,
       expected: true,
       message
     });
@@ -90,7 +111,7 @@ export default function registerHelpers() {
 
   QUnit.assert.isPresent = function(actual, message) {
     this.pushResult({
-      result: Ember.isPresent(actual),
+      result: isPresent(actual),
       actual,
       expected: true,
       message
@@ -99,7 +120,7 @@ export default function registerHelpers() {
 
   QUnit.assert.isBlank = function(actual, message) {
     this.pushResult({
-      result: Ember.isBlank(actual),
+      result: isBlank(actual),
       actual,
       exected: true,
       message
@@ -107,10 +128,11 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.includes = function(actual, expected, message) {
-    var type = Ember.typeOf('actual');
+    const type = typeOf('actual');
 
-    if (type !== 'string' && type !== 'array')
+    if (type !== 'string' && type !== 'array') {
       throw 'Object does not appear to be a string or array';
+    }
 
     this.pushResult({
       result: actual.indexOf(expected) > -1,
@@ -122,9 +144,11 @@ export default function registerHelpers() {
   QUnit.assert.contains = QUnit.assert.includes;
 
   QUnit.assert.notIncludes = function(actual, expected, message) {
-    if (isBlank(actual))
+    if (isBlank(actual)) {
       actual = [];
-    var objType = Ember.typeOf(actual);
+    }
+
+    const objType = typeOf(actual);
 
     if (objType !== 'string' && objType !== 'array') {
       throw 'Object needs to be a string or an array';
@@ -164,20 +188,4 @@ export default function registerHelpers() {
     });
   };
   QUnit.assert.classNotContains = QUnit.assert.classNotIncludes;
-
-  QUnit.assert.hasBreadcrumbs = function(crumbs, message) {
-    var base = $('.breadcrumbs>li');
-
-    var currentCrumbs = base.map(function(i, a) {
-      return $(a).text();
-    }).toArray().join(' - ');
-    var crumbsDisplay = crumbs.join(' - ');
-
-    this.pushResult({
-      result: currentCrumbs === crumbsDisplay,
-      actual: currentCrumbs,
-      expected: crumbsDisplay,
-      message
-    });
-  };
 };
