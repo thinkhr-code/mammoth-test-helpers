@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/MammothHR/mammoth-test-helpers.svg?token=xGaPGowvPdvqS2QgbViy&branch=master)](https://travis-ci.com/MammothHR/mammoth-test-helpers)
+
 # mammoth-test-helpers
 
 A set of QUnit extensions, stubs for common global tools, and other testing tools for testing Ember CLI applications.
