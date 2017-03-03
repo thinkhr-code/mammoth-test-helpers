@@ -38,26 +38,6 @@ export default function registerHelpers() {
     return currentRoute(app).get('currentModel');
   };
 
-  const getSession = function(app) {
-    return container(app, 'service:session');
-  };
-
-  const getCurrentAccount = function(app) {
-    return container(app, 'currentAccount:main');
-  };
-
-  const setSession = function(app, path, value) {
-    const thisSession = getSession(app);
-
-    Ember.run(function() {
-      thisSession.set(path, value);
-    });
-  };
-
-  const metadata = function(model) {
-    return this.store().metadataFor(model);
-  };
-
   /** Return the current route's top level controller
 
       @return {Controller}
@@ -77,14 +57,6 @@ export default function registerHelpers() {
       @return {Model}
   */
   Test.registerHelper('currentModel', currentModel);
-
-
-  /** Fetch the available metadata for a model
-
-      @param {String}   Model's name
-      @return {Object}
-  */
-  Test.registerHelper('getMetadata', metadata);
 
 
   /** Get the store
@@ -117,26 +89,4 @@ export default function registerHelpers() {
       @return {Route}
   */
   Test.registerHelper('getRoute', route);
-
-
-  /** Get the user session
-
-      @return {Session}
-  */
-  Test.registerHelper('getSession', getSession);
-
-  /** Get the current account data
-
-      @return {CurrentAccount}
-  */
-  Test.registerHelper('getCurrentAccount', getCurrentAccount);
-
-
-  /** Set the session
-      @param  {String}  Path to the item to set (i.e. 'user.affiliate.accountConfiguration.offersHrod')
-      @param  {String}  Value to set
-
-      @return {}
-  */
-  Test.registerHelper('setSession', setSession);
 }

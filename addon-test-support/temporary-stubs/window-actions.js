@@ -1,7 +1,9 @@
-const defaultConfirm = window.confirm;
-const defaultAlert = window.alert;
+let defaultConfirm = window.confirm;
+let defaultAlert = window.alert;
 
 function stubConfirm(cb) {
+  defaultConfirm = window.confirm;
+
   window.confirm = function(message) {
     if (cb) {
       return cb(message);
@@ -16,6 +18,8 @@ function unstubConfirm() {
 }
 
 function stubAlert(cb) {
+  defaultAlert = window.alert;
+
   window.alert = function(message) {
     if (cb) {
       cb(message);
