@@ -2,7 +2,7 @@ import computed, { alias } from 'ember-computed';
 
 export default {
   // data-path and data-id are for test helpers
-  attributeBindings: ['data-hint', 'data-path', 'data-1-id', 'data-2-id', 'data-3-id', 'data-4-id'],
+  attributeBindings: ['data-path', 'data-1-id', 'data-2-id', 'data-3-id', 'data-4-id'],
 
   /**
      This overrides the link-to helper for all tests so that the path and ID are
