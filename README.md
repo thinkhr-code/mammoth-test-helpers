@@ -47,6 +47,7 @@ Several modules are includes:
 |`mammoth-test-helpers/test-support/helpers/assert-helpers`| Yes | Adds numerous helpers to QUnit's `assert`. |[source](addon-test-support/helpers/assert-helpers.js)|
 |`mammoth-test-helpers/test-support/helpers/container-helpers`| Yes | Adds numerous global Ember helpers that access the container.  Only useful for Acceptance tests. |[source](addon-test-support/helpers/container-helpers.js)|
 |`mammoth-test-helpers/test-support/helpers/link-to-helper`|   | Adds data attributes to `link-to` helpers that track the passed in models / path. |[source](addon-test-support/helpers/link-to-helper.js)|
+|`mammoth-test-helpers/test-support/helpers/ajax`|   | A couple of simple helpers for simplifying ajax requests (e.g. using Pretender.js). |[source](addon-test-support/helpers/ajax-helpers.js)|
 |`mammoth-test-helpers/test-support/shims/console`|   | Shim for `window.console.log` if it doesn't exist (thanks IE!). |[source](addon-test-support/shims/console.js)|
 |`mammoth-test-helpers/test-support/stubs/google-chart`|   | Stub out common methods related to google charts. |[source](addon-test-support/stubs/google-chart.js)|
 |`mammoth-test-helpers/test-support/stubs/stripe`|   | Stub out some common behavior for Stripe. |[source](addon-test-support/stubs/stripe.js)|
