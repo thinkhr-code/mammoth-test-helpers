@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import QUnit from 'qunit';
+import jquery from 'jquery';
 
 const { typeOf, isBlank, isPresent } = Ember;
 
@@ -80,7 +81,7 @@ export default function registerHelpers() {
   // Only works with elements rendered by Ember (e.g. a component)
   QUnit.assert.isFocused = function(actual, message) {
     const el = parseActual(actual);
-    const focused = $(document.activeElement);
+    const focused = jquery(document.activeElement);
     // All Ember elements have a unique ID
     const elId = el.attr('id');
     const actualId = focused.attr('id');
@@ -96,7 +97,7 @@ export default function registerHelpers() {
   // Only works with elements rendered by Ember (e.g. a component)
   QUnit.assert.isNotFocused = function(actual, message) {
     const el = parseActual(actual);
-    const focused = $(document.activeElement);
+    const focused = jquery(document.activeElement);
     // All Ember elements have a unique ID
     const elId = el.attr('id');
     const actualId = focused.attr('id');
@@ -188,4 +189,4 @@ export default function registerHelpers() {
     });
   };
   QUnit.assert.classNotContains = QUnit.assert.classNotIncludes;
-};
+}

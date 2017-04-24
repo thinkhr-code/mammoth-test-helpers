@@ -8,7 +8,6 @@ let hasRun = false;
 export function addToQueue(fn) {
   if (typeof fn !== 'function') {
     throw 'Error, tried to add a non-function to prep-tests queue';
-    console.log(fn);
   }
 
   queuedHelpers.push(fn);
