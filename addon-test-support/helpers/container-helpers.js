@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Test } = Ember;
+const { Test, assert } = Ember;
 
 export default function registerHelpers() {
   const container = function(app, path) {
@@ -8,17 +8,17 @@ export default function registerHelpers() {
   };
 
   const route = function(app, name){
-    Ember.assert('You need to pass a route name to the route helper', !!name);
+    assert('You need to pass a route name to the route helper', !!name);
     return container(app, `route:${ name }`);
   };
 
   const controller = function(app, name){
-    Ember.assert('You need to pass a controller name to the controller helper', !!name);
+    assert('You need to pass a controller name to the controller helper', !!name);
     return container(app, `controller:${ name }`);
   };
 
   const service = function(app, name){
-    Ember.assert('You need to pass a service name to the service helper', !!name);
+    assert('You need to pass a service name to the service helper', !!name);
     return container(app, `service:${ name }`);
   };
 

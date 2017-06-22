@@ -12,6 +12,8 @@ const parseActual = function(actual) {
   }
 };
 
+export { parseActual };
+
 export default function registerHelpers() {
   QUnit.assert.equals = QUnit.assert.equal;
   QUnit.assert.notEquals = QUnit.assert.notEqual;
