@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import QUnit from 'qunit';
 import jquery from 'jquery';
+import tableContainsHelper from 'mammoth-test-helpers/test-support/helpers/table-contains-helper';
 
 const { typeOf, isBlank, isPresent } = Ember;
 
@@ -191,4 +192,6 @@ export default function registerHelpers() {
     });
   };
   QUnit.assert.classNotContains = QUnit.assert.classNotIncludes;
+
+  QUnit.assert.tableContains = tableContainsHelper;
 }
