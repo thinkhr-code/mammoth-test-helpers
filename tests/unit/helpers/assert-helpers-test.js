@@ -120,3 +120,105 @@ test('assert.classNotIncludes / assert.classNotContains', function(assert) {
   assert.classNotIncludes(this.$('div'), 'bar', 'it works');
   assert.classNotContains(this.$('div'), 'bar', 'it works');
 });
+
+test('assert.tableContains', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    <table>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  `);
+
+  assert.tableContains(this.$('table:eq(0)'), {
+    body: [
+      [1,2],
+      [3]
+    ]
+  });
+});
+
+test('assert.tableContains - with a null cell', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    <table>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>4</td>
+        </tr>
+      </tbody>
+    </table>
+  `);
+
+  assert.tableContains(this.$('table:eq(0)'), {
+    body: [
+      [1,2],
+      [null, 4]
+    ]
+  });
+});
+
+test('assert.tableContains - with a null row', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    <table>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>6</td>
+        </tr>
+      </tbody>
+    </table>
+  `);
+
+  assert.tableContains(this.$('table:eq(0)'), {
+    body: [
+      [1,2],
+      null,
+      [5,6]
+    ]
+  });
+});
+
+test('assert.tableContains - without a tbody', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    <table>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+    </table>
+  `);
+
+  assert.tableContains(this.$('table:eq(0)'), {
+    body: [
+      [1,2],
+    ]
+  });
+});
