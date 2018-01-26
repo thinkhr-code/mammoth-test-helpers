@@ -1,6 +1,6 @@
 {
   "name": "mammoth-test-helpers",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Assorted test helpers for Ember and QUnit",
   "keywords": [
     "ember-addon"
