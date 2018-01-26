@@ -9,7 +9,11 @@ export default function stubGoogleCharts() {
         options.callback();
       }
     },
+
     visualization: {
+      'LineChart'() {
+        return stubDraw;
+      },
       'BarChart'() {
         return stubDraw;
       },
@@ -25,6 +29,7 @@ export default function stubGoogleCharts() {
           format() {}
         };
       },
+
       DataTable() {
         return {
           addColumn() {},
