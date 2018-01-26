@@ -4,6 +4,11 @@ export default function stubGoogleCharts() {
   };
 
   window.google = {
+    load(chart, num, options) {
+      if (options.callback) {
+        options.callback();
+      }
+    },
     visualization: {
       'BarChart'() {
         return stubDraw;
