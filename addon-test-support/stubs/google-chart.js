@@ -11,6 +11,9 @@ export default function stubGoogleCharts() {
     },
 
     visualization: {
+      'ColumnChart'() {
+        return stubDraw;
+      },
       'LineChart'() {
         return stubDraw;
       },
