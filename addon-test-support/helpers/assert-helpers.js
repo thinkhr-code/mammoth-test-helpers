@@ -2,6 +2,7 @@ import Ember from 'ember';
 import QUnit from 'qunit';
 import jquery from 'jquery';
 import tableContainsHelper from 'mammoth-test-helpers/test-support/helpers/table-contains-helper';
+import { find } from './jquery-actions';
 
 const { typeOf, isBlank, isPresent } = Ember;
 
