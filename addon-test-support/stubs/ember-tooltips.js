@@ -1,4 +1,4 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 
 /**
   The tooltip component needs a lot of dependencies.  We shouldn't be testing it

@@ -1,4 +1,5 @@
-import computed, { alias } from 'ember-computed';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 
 export default {
   // data-path and data-id are for test helpers

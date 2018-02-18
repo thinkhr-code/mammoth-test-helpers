@@ -1,4 +1,4 @@
-import { isBlank } from 'ember-utils';
+import { isBlank } from '@ember/utils';
 
 function buildError(message, actual, row, column) {
   return `Attempted to ${ message } at table row ${ row }, column ${ column }, but ${ actual } was found`;

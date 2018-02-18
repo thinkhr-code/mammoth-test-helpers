@@ -1,12 +1,12 @@
-import Ember from 'ember';
-import Component from 'ember-component';
+import Component from '@ember/component';
+import { A } from '@ember/array';
 
 export default Component.extend({
   items: null,
 
   init() {
     this._super(...arguments);
-    this.set('items', Ember.A());
+    this.set('items', A());
   },
 
   actions: {
