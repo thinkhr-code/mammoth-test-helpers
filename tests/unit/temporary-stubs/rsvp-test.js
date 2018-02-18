@@ -1,9 +1,7 @@
 import { test, module } from 'ember-qunit';
 import { stubRSVP, unstubRSVP } from 'mammoth-test-helpers/test-support/temporary-stubs/rsvp';
-import Ember from 'ember';
 import wait from 'ember-test-helpers/wait';
-
-const { RSVP } = Ember;
+import RSVP from 'rsvp';
 
 module('temporary-stubs/rsvp');
 

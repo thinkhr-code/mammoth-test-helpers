@@ -1,18 +1,29 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
 /dist
+/coverage
 /tmp
 
 # dependencies
 /node_modules
 /bower_components
 
+# Swap files
+.*swp
+.*swo
+.*swn
+*.rb
+
 # misc
+.env
 /.sass-cache
+.DS_Store
+/jsconfig.json
 /connect.lock
 /coverage/*
 /libpeerconnection.log
-npm-debug.log*
+npm-debug.log
 testem.log
-.DS_Store
+yarn-error.log
+.yarnrc

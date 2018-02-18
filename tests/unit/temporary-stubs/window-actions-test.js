@@ -1,5 +1,10 @@
 import { test, module } from 'ember-qunit';
-import { stubConfirm, unstubConfirm, stubAlert, unstubAlert } from 'mammoth-test-helpers/test-support/temporary-stubs/window-actions';
+import {
+  stubConfirm,
+  unstubConfirm,
+  stubAlert,
+  unstubAlert
+} from 'mammoth-test-helpers/test-support/temporary-stubs/window-actions';
 
 module('temporary-stubs/window-actions');
 

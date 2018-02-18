@@ -58,21 +58,6 @@ test('assert.isVisible / assert.isHidden', function(assert) {
   assert.isHidden(this.$('.test-div'), 'isHidden works');
 });
 
-test('assert.isFocussed / assert.isNotFocused', function(assert) {
-  assert.expect(2);
-
-  // We need to set an ad hoc ID since this is not an ember component
-  this.render(hbs`
-    <input class="test-input" id="foo" />
-  `);
-
-  assert.isNotFocused(this.$('.test-input'), 'isNotFocused works');
-
-  this.$('input').focus();
-
-  assert.isFocused(this.$('.test-input'), 'isFocused works');
-});
-
 test('assert.isPresent', function(assert) {
   assert.expect(1);
 

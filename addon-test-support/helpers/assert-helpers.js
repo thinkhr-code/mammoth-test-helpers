@@ -1,9 +1,13 @@
-import Ember from 'ember';
+import {
+  isPresent,
+  isBlank,
+  typeOf,
+  isEmpty
+} from '@ember/utils';
 import QUnit from 'qunit';
 import jquery from 'jquery';
 import tableContainsHelper from 'mammoth-test-helpers/test-support/helpers/table-contains-helper';
-
-const { typeOf, isBlank, isPresent } = Ember;
+import { find } from './jquery-actions';
 
 const parseActual = function(actual) {
   if (typeOf(actual) === 'string') {
@@ -65,7 +69,7 @@ export default function registerHelpers() {
   QUnit.assert.isHidden = function(actual, message) {
     const el = parseActual(actual);
 
-    if (Ember.isEmpty(el))
+    if (isEmpty(el))
       this.pushResult({
         result: true,
         actual: el,
@@ -79,38 +83,6 @@ export default function registerHelpers() {
         expected: true,
         message
       });
-  };
-
-  // Only works with elements rendered by Ember (e.g. a component)
-  QUnit.assert.isFocused = function(actual, message) {
-    const el = parseActual(actual);
-    const focused = jquery(document.activeElement);
-    // All Ember elements have a unique ID
-    const elId = el.attr('id');
-    const actualId = focused.attr('id');
-
-    this.pushResult({
-      result: elId === actualId,
-      actualId,
-      expected: true,
-      message
-    });
-  };
-
-  // Only works with elements rendered by Ember (e.g. a component)
-  QUnit.assert.isNotFocused = function(actual, message) {
-    const el = parseActual(actual);
-    const focused = jquery(document.activeElement);
-    // All Ember elements have a unique ID
-    const elId = el.attr('id');
-    const actualId = focused.attr('id');
-
-    this.pushResult({
-      result: elId !== actualId,
-      actualId,
-      expected: true,
-      message
-    });
   };
 
   QUnit.assert.isPresent = function(actual, message) {

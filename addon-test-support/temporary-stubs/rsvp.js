@@ -1,6 +1,5 @@
+import RSVP from 'rsvp';
 import Ember from 'ember';
-
-const { RSVP } = Ember;
 
 export function stubRSVP() {
   RSVP.off('error');

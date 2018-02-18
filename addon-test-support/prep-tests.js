@@ -1,8 +1,7 @@
 import assertHelpers from './helpers/assert-helpers';
-import containerHelpers from './helpers/container-helpers';
 import consoleShim from './shims/console';
 
-const queuedHelpers = [assertHelpers, containerHelpers, consoleShim];
+const queuedHelpers = [assertHelpers, consoleShim];
 let hasRun = false;
 
 export function addToQueue(fn) {

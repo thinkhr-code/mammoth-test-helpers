@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import LinkComponent from '@ember/routing/link-component';
 import properties from './link-to-properties';
 
 export default function addHelper() {
-  Ember.LinkComponent.reopen(properties);
+  LinkComponent.reopen(properties);
 }
