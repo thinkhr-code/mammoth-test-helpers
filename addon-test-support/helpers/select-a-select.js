@@ -1,4 +1,5 @@
 import { parseActual } from './assert-helpers';
+import { run } from '@ember/runloop';
 
 /**
   Examples:
@@ -24,6 +25,8 @@ export default function selectASelect(element, item) {
     option = select.find(`option:eq(${ item })`);
   }
 
-  option.prop('selected', true);
-  select.trigger('change');
+  run(() => {
+    option.prop('selected', true);
+    select.trigger('change');
+  });
 }
