@@ -1,44 +1,42 @@
 let storedValue;
 
 export default function stubWysihtml5() {
-  window.wysihtml5 = {
-    lang: {
-      object() {
-        return {
-          clone() {
-            return {
-              tags: {
-                div: {
-                  one_of_type: {},
-                  check_attributes: {}
-                },
-                span: {}
-              }
-            };
-          }
-        };
-      }
-    },
+  const factory = window.wysihtml5 = function() {};
 
-    Editor() {
+  factory.lang = {
+    object() {
       return {
-        setValue(value) {
-          storedValue = value;
-        },
-        on() {
+        clone() {
           return {
-            on() {}
+            tags: {
+              div: {
+                one_of_type: {},
+                check_attributes: {}
+              },
+              span: {}
+            }
           };
-        },
-        getValue() {
-          return storedValue;
-        },
-        destroy() {
-          storedValue = null;
         }
       };
-    },
-
-    commands: {}
+    }
   };
+  factory.Editor = function() {
+    return {
+      setValue(value) {
+        storedValue = value;
+      },
+      on() {
+        return {
+          on() {}
+        };
+      },
+      getValue() {
+        return storedValue;
+      },
+      destroy() {
+        storedValue = null;
+      }
+    };
+  };
+  factory.commands = {};
 }
