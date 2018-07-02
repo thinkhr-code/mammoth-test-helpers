@@ -5,8 +5,6 @@ import Component from '@ember/component';
   in unit tests anyways...
 */
 export default function(context) {
-  context.register('component:tooltip-on-element',   Component.extend());
-  context.register('component:tooltip-on-component', Component.extend());
-  context.register('component:popover-on-element',   Component.extend());
-  context.register('component:popover-on-component', Component.extend());
+  context.register('component:ember-tooltip',   Component.extend());
+  context.register('component:ember-popover', Component.extend());
 }
