@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "ember-cli-htmlbars": "^2.0.3",
-    "ember-cli-babel": "6.11.0"
+    "ember-cli-babel": "^6.12.0"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
