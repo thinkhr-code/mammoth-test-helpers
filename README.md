@@ -58,6 +58,20 @@ Several modules are includes:
 |`mammoth-test-helpers/test-support/temporary-stubs/rsvp`|   | Returns `stubRSVP` and `unstubRSVP` for situations where you don't want RSVP to throw an error (e.g. if you are testing failed requests). |[source](addon-test-support/stubs/rsvp.js)|
 |`mammoth-test-helpers/test-support/temporary-stubs/window-actions`|   | Includes several methods for stubbing / unstubbing common blocking window actions (e.g. `alert` and `confirm`.)  Stubs accept functions for testing parameters. |[source](addon-test-support/stubs/window-actions.js)|
 
+## Test Reporter
+
+Included is a custom test reporter for Testem that results in simple output (dots) with failure summaries at the end.  This is ideal in a CI environment.
+
+To use, add this to your testem.js file:
+
+```
+const Reporter = require('./node_modules/mammoth-test-helpers/test-reporter');
+
+module.exports = {
+  reporter: Reporter,
+...
+```
+
 
 ## Running Tests
 
