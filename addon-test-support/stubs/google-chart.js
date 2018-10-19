@@ -26,6 +26,9 @@ export default function stubGoogleCharts() {
   factory.visualization.AreaChart = function() {
     return stubDraw;
   };
+  factory.visualization.GeoChart = function() {
+    return stubDraw;
+  };
 
   factory.visualization.NumberFormat = function() {
     return {
