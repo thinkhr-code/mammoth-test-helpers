@@ -5,7 +5,6 @@ import {
   isEmpty
 } from '@ember/utils';
 import QUnit from 'qunit';
-import jquery from 'jquery';
 import tableContainsHelper from 'mammoth-test-helpers/test-support/helpers/table-contains-helper';
 import { find } from './jquery-actions';
 

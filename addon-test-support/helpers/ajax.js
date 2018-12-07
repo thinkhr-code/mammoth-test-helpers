@@ -1,5 +1,7 @@
-export const head = { 'Content-Type': 'application/json' };
+const head = { 'Content-Type': 'application/json' };
 
-export function asJson(hash) {
+function asJson(hash) {
   return JSON.stringify(hash);
 }
+
+export { head, asJson };

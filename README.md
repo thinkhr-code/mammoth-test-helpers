@@ -20,7 +20,7 @@ import linkTo                    from 'mammoth-test-helpers/test-support/helpers
 import googleChart               from 'mammoth-test-helpers/test-support/stubs/google-chart';
 import stripe                    from 'mammoth-test-helpers/test-support/stubs/stripe';
 import wysihtml5                 from 'mammoth-test-helpers/test-support/stubs/wysihtml5';
-import { setResolver }           from 'ember-qunit';
+import { setResolver }           from '@ember/test-helpers';
 
 setResolver(resolver);
 
