@@ -7,10 +7,13 @@ import {
 import QUnit from 'qunit';
 import tableContainsHelper from 'mammoth-test-helpers/test-support/helpers/table-contains-helper';
 import { find } from './jquery-actions';
+import jquery from 'jquery';
 
 const parseActual = function(actual) {
   if (typeOf(actual) === 'string') {
     return find(actual);
+  } else if (!actual.jquery) {
+    return jquery(actual);
   } else {
     return actual;
   }
