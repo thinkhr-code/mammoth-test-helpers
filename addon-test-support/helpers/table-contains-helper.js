@@ -8,7 +8,7 @@ export default function(actualTable, rules, message) {
   const results = [];
 
   if (rules.body) {
-    let body = actualTable.find('tbody');
+    let body = actualTable.querySelector('tbody');
 
     if (body.length === 0)
       body = actualTable;
@@ -23,14 +23,13 @@ export default function(actualTable, rules, message) {
           return;
         }
 
-        const cellSelector = `tr:eq(${ row })>td:eq(${ column })`;
-        const cell = body.find(cellSelector);
+        const cell = body.querySelectorAll('tr')[row].querySelectorAll('td')[column];
 
         if (cell.length === 0) {
           results.push(buildError('find a cell', 'nothing', row, column));
         }
 
-        const cellText = cell.text();
+        const cellText = cell.textContent;
 
         if (cellText.indexOf(cellRule) === -1) {
           results.push(buildError(`find a cell with '${ cellRule }'`, `'${ cellText }'`, row, column));
