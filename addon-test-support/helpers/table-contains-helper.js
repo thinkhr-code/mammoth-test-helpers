@@ -10,7 +10,7 @@ export default function(actualTable, rules, message) {
   if (rules.body) {
     let body = actualTable.querySelector('tbody');
 
-    if (body.length === 0)
+    if (!body || body.length === 0)
       body = actualTable;
 
     rules.body.forEach((rowRule, row) => {

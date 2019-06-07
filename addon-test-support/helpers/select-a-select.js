@@ -13,7 +13,7 @@ function fireEvent(element, event) {
 /**
   Examples:
   selectASelect('.foo-select', 5);
-  selectASelect($('.foo-select'), select => select.find('option[value="Bar"]'))
+  selectASelect(find('.foo-select'), select => select.find('option[value="Bar"]'))
 
   @note passing a function to item only works on acceptance tests.
   @param [String, $] element

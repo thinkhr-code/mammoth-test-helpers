@@ -1,4 +1,4 @@
-import { test, module } from 'ember-qunit';
+import { module, test } from 'qunit';
 import {
   stubConfirm,
   unstubConfirm,
@@ -6,46 +6,46 @@ import {
   unstubAlert
 } from 'mammoth-test-helpers/test-support/temporary-stubs/window-actions';
 
-module('temporary-stubs/window-actions');
+module('temporary-stubs/window-actions', function() {
+  test('stubConfirm / unstubConfirm', function(assert) {
+    assert.expect(2);
 
-test('stubConfirm / unstubConfirm', function(assert) {
-  assert.expect(2);
+    const oldConfirm = window.confirm;
 
-  const oldConfirm = window.confirm;
+    window.confirm = function() {
+      assert.ok(true, 'It runs');
+    };
 
-  window.confirm = function() {
-    assert.ok(true, 'It runs');
-  };
+    stubConfirm(message => {
+      assert.equal(message, 'foo', 'it works');
+    });
 
-  stubConfirm(message => {
-    assert.equal(message, 'foo', 'it works');
+    window.confirm('foo');
+
+    unstubConfirm();
+
+    window.confirm();
+    window.confirm = oldConfirm;
   });
 
-  window.confirm('foo');
+  test('stubAlert / unstubAlert', function(assert) {
+    assert.expect(2);
 
-  unstubConfirm();
+    const oldAlert = window.alert;
 
-  window.confirm();
-  window.confirm = oldConfirm;
-});
+    window.alert = function() {
+      assert.ok(true, 'It runs');
+    };
 
-test('stubAlert / unstubAlert', function(assert) {
-  assert.expect(2);
+    stubAlert(message => {
+      assert.equal(message, 'foo', 'it works');
+    });
 
-  const oldAlert = window.alert;
+    window.alert('foo');
 
-  window.alert = function() {
-    assert.ok(true, 'It runs');
-  };
+    unstubAlert();
 
-  stubAlert(message => {
-    assert.equal(message, 'foo', 'it works');
+    window.alert();
+    window.alert = oldAlert;
   });
-
-  window.alert('foo');
-
-  unstubAlert();
-
-  window.alert();
-  window.alert = oldAlert;
 });

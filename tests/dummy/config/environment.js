@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   const ENV = {
     modulePrefix: 'dummy',
     environment,
@@ -12,6 +12,9 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       },
       EXTEND_PROTOTYPES: {
+        Function: false,
+        String: false,
+        Array: false,
         // Prevent Ember Data from overriding Date.parse.
         Date: false
       }
@@ -40,6 +43,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
   }
 
   return ENV;

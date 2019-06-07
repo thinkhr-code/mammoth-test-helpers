@@ -96,7 +96,16 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.isVisible = function(actual, message) {
-    const elIsVisible = parseActual(actual).style.visbility !== 'hidden';
+    const el = parseActual(actual);
+    let elIsVisible = false;
+
+    if (el) {
+      const elStyle = el[0].style;
+
+      if (elStyle) {
+        elIsVisible = elStyle.visibility !== 'hidden';
+      }
+    }
 
     this.pushResult({
       result: elIsVisible,
@@ -107,7 +116,16 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.isHidden = function(actual, message) {
-    const elIsHidden = parseActual(actual).style.visbility === 'hidden';
+    const el = parseActual(actual);
+    let elIsHidden = true;
+
+    if (el) {
+      const elStyle = el[0].style;
+
+      if (elStyle) {
+        elIsHidden = elStyle.visibility === 'hidden';
+      }
+    }
 
     if (isEmpty(el))
       this.pushResult({
@@ -186,7 +204,7 @@ export default function registerHelpers() {
       el = el[0];
     }
 
-    const actualClasses = Array.from(el.classList)
+    const actualClasses = Array.from(el.classList);
     const result = actualClasses.indexOf(expected) > -1;
 
     this.pushResult({
@@ -205,7 +223,7 @@ export default function registerHelpers() {
       el = el[0];
     }
 
-    const actualClasses = Array.from(el.classList)
+    const actualClasses = Array.from(el.classList);
     const result = actualClasses.indexOf(expected) === -1;
 
     this.pushResult({
