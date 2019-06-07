@@ -1,10 +1,10 @@
-import { test, module } from 'ember-qunit';
+import { module, test } from 'qunit';
 
-module('stubs/stripe');
+module('stubs/stripe', function() {
+  test('it exists', function(assert) {
+    assert.expect(2);
 
-test('it exists', function(assert) {
-  assert.expect(2);
-
-  assert.isPresent(window.Stripe);
-  assert.isPresent(window.Stripe.setPublishableKey);
+    assert.isPresent(window.Stripe);
+    assert.isPresent(window.Stripe.setPublishableKey);
+  });
 });

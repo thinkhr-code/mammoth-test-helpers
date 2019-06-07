@@ -1,24 +1,25 @@
-import { test, module } from 'ember-qunit';
+import { module, test } from 'qunit';
 import { stubRSVP, unstubRSVP } from 'mammoth-test-helpers/test-support/temporary-stubs/rsvp';
-import wait from 'ember-test-helpers/wait';
 import RSVP from 'rsvp';
 
-module('temporary-stubs/rsvp');
+import { settled } from '@ember/test-helpers';
 
-test('it works', function(assert) {
-  assert.expect(0);
+module('temporary-stubs/rsvp', function() {
+  test('it works', function(assert) {
+    assert.expect(0);
 
-  stubRSVP();
+    stubRSVP();
 
-  const promise = new RSVP.Promise(function(resolve, reject) {
-    reject('explosion');
-  });
+    const promise = new RSVP.Promise(function(resolve, reject) {
+      reject('explosion');
+    });
 
-  promise.then(() => {
-    assert.ok(false, 'Promise passed when it should have failed');
-  });
+    promise.then(() => {
+      assert.ok(false, 'Promise passed when it should have failed');
+    });
 
-  return wait().then(() => {
-    unstubRSVP();
+    return settled().then(() => {
+      unstubRSVP();
+    });
   });
 });

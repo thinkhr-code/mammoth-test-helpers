@@ -1,7 +1,7 @@
-import { test, module } from 'ember-qunit';
+import { module, test } from 'qunit';
 
-module('shims/console');
-
-test('console exists', function(assert) {
-  assert.isPresent(window.console.log, 'It exists');
+module('shims/console', function() {
+  test('console exists', function(assert) {
+    assert.isPresent(window.console.log, 'It exists');
+  });
 });

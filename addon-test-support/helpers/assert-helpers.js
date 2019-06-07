@@ -4,16 +4,15 @@ import {
   typeOf,
   isEmpty
 } from '@ember/utils';
+import { isArray } from '@ember/array';
 import QUnit from 'qunit';
 import tableContainsHelper from 'mammoth-test-helpers/test-support/helpers/table-contains-helper';
-import { find } from './jquery-actions';
-import jquery from 'jquery';
+import { findAll } from '@ember/test-helpers';
 
 const parseActual = function(actual) {
   if (typeOf(actual) === 'string') {
-    return find(actual);
-  } else if (!actual.jquery) {
-    return jquery(actual);
+    return findAll(actual);
+
   } else {
     return actual;
   }
@@ -24,41 +23,89 @@ export { parseActual };
 export default function registerHelpers() {
   QUnit.assert.equals = QUnit.assert.equal;
   QUnit.assert.notEquals = QUnit.assert.notEqual;
+
   QUnit.assert.exists = function(actual, message) {
-    const length = parseActual(actual).length;
+    const htmlElement = parseActual(actual);
+    let found;
+
+    if (isArray(htmlElement))
+      found = htmlElement.length > 0;
+    else
+      found = !isBlank(htmlElement);
 
     this.pushResult({
-      result: length > 0,
-      actual: length,
-      expected: 'At least 1',
+      result: found,
+      actual: found,
+      expected: 'At least one exists',
       message
     });
   };
 
   QUnit.assert.numExists = function(actual, count, message) {
-    const length = parseActual(actual).length;
+    const htmlElement = parseActual(actual);
 
-    this.pushResult({
-      result: length === count,
-      actual: length,
-      expected: count,
-      message
-    });
+    if (!htmlElement) {
+      this.pushResult({
+        result: false,
+        actual: 0,
+        expected: count,
+        message
+      });
+    } else {
+      let length;
+
+      if (htmlElement.childElementCount)
+        length = htmlElement.childElementCount;
+      else
+        length = htmlElement.length;
+
+      this.pushResult({
+        result: length === count,
+        actual: length,
+        expected: count,
+        message
+      });
+    }
   };
 
   QUnit.assert.notExists = function(actual, message) {
-    const length = parseActual(actual).length;
+    const htmlElement = parseActual(actual);
 
-    this.pushResult({
-      result: length === 0,
-      actual: length,
-      expected: 0,
-      message
-    });
+    if (!htmlElement) {
+      this.pushResult({
+        result: true,
+        actual: 0,
+        expected: 'None exists',
+        message
+      });
+    } else {
+      let length;
+
+      if (htmlElement.childElementCount)
+        length = htmlElement.childElementCount;
+      else
+        length = htmlElement.length;
+
+      this.pushResult({
+        result: length === 0,
+        actual: length,
+        expected: 'None exists',
+        message
+      });
+    }
   };
 
   QUnit.assert.isVisible = function(actual, message) {
-    const elIsVisible = parseActual(actual).is(':visible');
+    const el = parseActual(actual);
+    let elIsVisible = false;
+
+    if (el) {
+      const elStyle = el[0].style;
+
+      if (elStyle) {
+        elIsVisible = elStyle.visibility !== 'hidden';
+      }
+    }
 
     this.pushResult({
       result: elIsVisible,
@@ -70,6 +117,15 @@ export default function registerHelpers() {
 
   QUnit.assert.isHidden = function(actual, message) {
     const el = parseActual(actual);
+    let elIsHidden = true;
+
+    if (el) {
+      const elStyle = el[0].style;
+
+      if (elStyle) {
+        elIsHidden = elStyle.visibility === 'hidden';
+      }
+    }
 
     if (isEmpty(el))
       this.pushResult({
@@ -80,8 +136,8 @@ export default function registerHelpers() {
       });
     else
       this.pushResult({
-        result: el.is(':hidden') === true,
-        actual: el.is(':hidden'),
+        result: elIsHidden,
+        actual: elIsHidden,
         expected: true,
         message
       });
@@ -106,7 +162,7 @@ export default function registerHelpers() {
   };
 
   QUnit.assert.includes = function(actual, expected, message) {
-    const type = typeOf('actual');
+    const type = typeOf(actual);
 
     if (type !== 'string' && type !== 'array') {
       throw 'Object does not appear to be a string or array';
@@ -142,12 +198,18 @@ export default function registerHelpers() {
   QUnit.assert.notContains = QUnit.assert.notIncludes;
 
   QUnit.assert.classIncludes = function(actual, expected, message) {
-    const el = parseActual(actual);
-    const classes = el.attr('class') || [];
+    let el = parseActual(actual);
+
+    if (isArray(el)) {
+      el = el[0];
+    }
+
+    const actualClasses = Array.from(el.classList);
+    const result = actualClasses.indexOf(expected) > -1;
 
     this.pushResult({
-      result: classes.indexOf(expected) > -1,
-      classes,
+      result,
+      actual: actualClasses,
       expected,
       message
     });
@@ -155,12 +217,18 @@ export default function registerHelpers() {
   QUnit.assert.classContains = QUnit.assert.classIncludes;
 
   QUnit.assert.classNotIncludes = function(actual, expected, message) {
-    const el = parseActual(actual);
-    const classes = el.attr('class') || [];
+    let el = parseActual(actual);
+
+    if (isArray(el)) {
+      el = el[0];
+    }
+
+    const actualClasses = Array.from(el.classList);
+    const result = actualClasses.indexOf(expected) === -1;
 
     this.pushResult({
-      result: classes.indexOf(expected) === -1,
-      classes,
+      result,
+      actual: actualClasses,
       expected,
       message
     });
