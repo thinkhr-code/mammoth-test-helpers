@@ -11,17 +11,17 @@ export default {
      This solves the issue for unit tests where the router hasn't been booted
      (so link-to helpers have no URL)
   */
-  'data-path': alias('targetRouteName'),
-  'data-1-id': computed('models', function() {
-    return this.get('models')[0];
+  'data-path': alias('route'),
+  'data-1-id': computed('_models', function() {
+    return this.get('_models')[0];
   }),
-  'data-2-id': computed('models', function() {
-    return this.get('models')[1];
+  'data-2-id': computed('_models', function() {
+    return this.get('_models')[1];
   }),
-  'data-3-id': computed('models', function() {
-    return this.get('models')[2];
+  'data-3-id': computed('_models', function() {
+    return this.get('_models')[2];
   }),
-  'data-4-id': computed('models', function() {
-    return this.get('models')[3];
+  'data-4-id': computed('_models', function() {
+    return this.get('_models')[3];
   }),
 };
