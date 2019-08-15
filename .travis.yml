@@ -32,5 +32,5 @@ notifications:
   email: false
   slack:
     rooms:
-      - mammoth-hr:l4mZwIEXoxBcUFiMUXKG3aVF
+      - thinkhrcorp:OzWJSPvGAv25SzT6i0u5SyWh
     on_pull_requests: true
